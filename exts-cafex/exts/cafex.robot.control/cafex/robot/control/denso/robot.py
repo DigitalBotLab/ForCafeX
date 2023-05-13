@@ -42,8 +42,8 @@ class MyRobot(Robot):
                             "left_inner_finger_joint", "right_inner_finger_joint",
                             ]
         
-        gripper_open_position = np.zeros(6) # np.array([1, -1, -1, -1, 1, 1]) / -10
-        gripper_closed_position = np.array([1, -1, -1, -1, 1, 1]) / 2.0
+        gripper_open_position = np.array([1, -1, -1, -1, 1, 1]) * (-0.5)
+        gripper_closed_position = np.array([1, -1, -1, -1, 1, 1]) * 0.78
         deltas = None # -gripper_closed_position / 5.0
 
         self._gripper = MyGripper(
