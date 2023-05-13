@@ -142,7 +142,7 @@
   </link>
 
   <joint name="right_inner_knuckle_joint" type="revolute">
-    <origin xyz="0 -0.007678 0.1422970" rpy="0 0 -3.14159" />
+    <origin xyz="0 0.007678 0.1422970" rpy="0 0 -3.14159" />
     <parent link="onrobot_rg2_base_link" />
     <child link="right_inner_knuckle" />
     <axis xyz="1 0 0" />
