@@ -13,6 +13,7 @@ class MyRobot(Robot):
         self,
         prim_path: str = "/World/denso",
         name: str = "denso_robot",
+        end_effector_path: Optional[str] = None,
         usd_path: Optional[str] = None,
         position: Optional[np.ndarray] = None,
         orientation: Optional[np.ndarray] = None,
@@ -33,7 +34,7 @@ class MyRobot(Robot):
             prim_path=prim_path, name=name, position=position, orientation=orientation, articulation_controller=None
         )
 
-        self._end_effector_prim_path = "/World/onrobot/onrobot_rg2_base_link" # prim_path + "/J6"
+        self._end_effector_prim_path = end_effector_path
         
         gripper_dof_names = [
                             "finger_joint", "right_outer_knuckle_joint",

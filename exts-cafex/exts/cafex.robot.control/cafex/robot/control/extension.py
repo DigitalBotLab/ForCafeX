@@ -34,7 +34,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
                 with ui.HStack(height = 20): 
                     ui.Label("Robot Prim Path:", width = 200)
                     self.robot_path_widget = ui.StringField(width = 300)
-                    self.robot_path_widget.model.set_value("/World/denso")
+                    self.robot_path_widget.model.set_value("/World/denso_v6_rg2/denso")
                 
                 ui.Spacer(height = 9)
                 ui.Label("End Effector", height = 20)
@@ -151,7 +151,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
         from .denso.robot import MyRobot
         # set robot
         prim_path = self.robot_path_widget.model.as_string
-        self.robot = MyRobot(prim_path = prim_path)
+        self.robot = MyRobot(prim_path = prim_path, end_effector_path="/World/denso_v6_rg2/onrobot/onrobot_rg2_base_link")
         self.robot.initialize()
         print("robot_info", self.robot.num_dof)
         print("robot_dof_names", len(self.robot.dof_names), self.robot.dof_names)
