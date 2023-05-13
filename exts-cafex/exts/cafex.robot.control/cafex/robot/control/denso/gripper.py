@@ -224,7 +224,7 @@ class MyGripper(Gripper):
         else:
             raise Exception("action {} is not defined for ParallelGripper".format(action))
         
-        # print("target_joint_positions", target_joint_positions)
+        print("target_joint_positions", target_joint_positions)
         return ArticulationAction(joint_positions=target_joint_positions)
     
     def regulate_joint_position(self, joint_pos, open_pos, close_pos):
