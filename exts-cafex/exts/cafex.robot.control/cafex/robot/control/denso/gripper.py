@@ -26,6 +26,9 @@ class MyGripper(Gripper):
         self._action_deltas = action_deltas
         self._articulation_num_dofs = None
         self._close_ratio = 1.0
+
+        # print("self._joint_opened_positions", self._joint_opened_positions)
+        # print("self._joint_closed_positions", self._joint_closed_positions)
         return
      
     @property
@@ -89,7 +92,7 @@ class MyGripper(Gripper):
             if dof_names[index] in self._joint_prim_names:
                 which_index = self._joint_prim_names.index(dof_names[index])
                 self._joint_dof_indicies[which_index] = index
-
+        
         # make sure that all gripper dof names were resolved
         if None in self._joint_dof_indicies:
             raise Exception("Not all gripper dof names were resolved to dof handles and dof indices.")

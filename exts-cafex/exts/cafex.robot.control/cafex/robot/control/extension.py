@@ -162,7 +162,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
         self.robot.initialize()
         print("robot_info", self.robot.num_dof)
         print("robot_dof_names", len(self.robot.dof_names), self.robot.dof_names)
-        # # print("robot_gripper", self.robot.gripper._gripper_joint_num)
+        print("robot_gripper", self.robot.gripper._gripper_joint_num)
 
         # # set controller
         from .denso.controller import MyController
@@ -217,7 +217,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # from pxr import UsdGeom
         # unit = UsdGeom.GetStageMetersPerUnit(omni.usd.get_context().get_stage())
         # print("stage unit", unit)
-        if self.controller:
+        if self.controller: 
             from .denso.action_config import action_config
             self.controller.apply_high_level_action(action_config["go_to_coffee_point"])
 

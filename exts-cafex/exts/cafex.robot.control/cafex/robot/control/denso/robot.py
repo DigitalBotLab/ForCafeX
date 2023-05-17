@@ -35,13 +35,7 @@ class MyRobot(Robot):
         )
 
         self._end_effector_prim_path = end_effector_path
-        
-        gripper_dof_names = [
-                            "finger_joint", "right_outer_knuckle_joint",
-                            "left_inner_knuckle_joint", "right_inner_knuckle_joint",
-                            #"left_outer_finger_joint", "right_outer_finger_joint", 
-                            "left_inner_finger_joint", "right_inner_finger_joint",
-                            ]
+
         
         gripper_open_position = np.array([1, -1, -1, -1, 1, 1]) * (-0.5)
         gripper_closed_position = np.array([1, -1, -1, -1, 1, 1]) * 0.78

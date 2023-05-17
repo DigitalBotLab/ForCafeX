@@ -7,10 +7,10 @@ DENSO_ROBOT_CONFIG = {
         #"left_outer_finger_joint", "right_outer_finger_joint", 
         "left_inner_finger_joint", "right_inner_finger_joint",
     ],
-    "gripper_open_position": [
-        [0.3, -0.3, -0.3, -0.3, 0.3, 0.3]
-    ],
-    "gripper_closed_position": [
+    "gripper_open_position": 
+        [-0.5, 0.5, 0.5, 0.5, -0.5, -0.5]
+    ,
+    "gripper_closed_position": 
         [0.78, -0.78, -0.78, -0.78, 0.78, 0.78]
-    ]
+    ,
 }
