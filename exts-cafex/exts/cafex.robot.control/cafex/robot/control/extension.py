@@ -29,6 +29,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
         self._window = ui.Window("For CafeX", width=300, height=300)
         with self._window.frame:
             with ui.VStack():
+                ui.Button("Debug", height = 20, clicked_fn=self.debug)
                 ui.Line(height = 2)
                 ui.Button("Register Physics Event", height = 50, clicked_fn=self.register_physics_event)
                 with ui.HStack(height = 20): 
@@ -167,6 +168,10 @@ class CafexRobotControlExtension(omni.ext.IExt):
         from .denso.controller import MyController
         self.controller = MyController("denso_controller", self.robot, connect_server=False)
 
+        if go_home:
+            from .denso.action_config import action_config
+            self.controller.apply_high_level_action(action_config["go_home"])
+
     def update_ee_target(self):
         print("update_ee_target")
         from .denso.numpy_utils import euler_angles_to_quat
@@ -206,6 +211,15 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # rot_euler = quat_to_euler_angles(rot_quat, degrees=True)
         # print("rot_euler:", rot_euler)
         # self.ee_ori_euler_read_widget.update(rot_euler[0])
+
+    ####################### debug ############################################################
+    def debug(self):
+        # from pxr import UsdGeom
+        # unit = UsdGeom.GetStageMetersPerUnit(omni.usd.get_context().get_stage())
+        # print("stage unit", unit)
+        if self.controller:
+            from .denso.action_config import action_config
+            self.controller.apply_high_level_action(action_config["go_to_coffee_point"])
 
     def on_shutdown(self):
         print("[cafex.robot.control] cafex robot control shutdown")
