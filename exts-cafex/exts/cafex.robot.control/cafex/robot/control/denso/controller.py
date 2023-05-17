@@ -33,7 +33,7 @@ class MyController(BaseController):
         
         # TODO：find height
         self.ee_pos_target = np.array([0.3, 0, 0.3])
-        self.ee_ori_target = np.array([0.0, 0.7071, 0, 0.7071])
+        self.ee_ori_target = np.array([0.7071, 0.0, 0.7071, 0])
         self.joint_target = np.zeros(self.robot.num_dof)
 
         # connection

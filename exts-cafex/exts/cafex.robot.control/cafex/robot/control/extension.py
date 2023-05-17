@@ -145,13 +145,19 @@ class CafexRobotControlExtension(omni.ext.IExt):
                 self.event_t = 0.0
     
     ########################### robot #######################################################
-    def set_robot(self):
+    def set_robot(self, go_home=True):
         print("set_robot")
 
         from .denso.robot import MyRobot
+        from .denso.robot_config import DENSO_ROBOT_CONFIG
         # set robot
         prim_path = self.robot_path_widget.model.as_string
-        self.robot = MyRobot(prim_path = prim_path, end_effector_path="/World/denso_v6_rg2/onrobot/onrobot_rg2_base_link")
+        self.robot = MyRobot(prim_path = prim_path, 
+                                end_effector_path="/World/denso_v6_rg2/onrobot/onrobot_rg2_base_link",
+                                gripper_dof_names = DENSO_ROBOT_CONFIG["gripper_dof_names"],
+                                gripper_open_position=DENSO_ROBOT_CONFIG["gripper_open_position"],
+                                gripper_closed_position=DENSO_ROBOT_CONFIG["gripper_closed_position"],
+                    )
         self.robot.initialize()
         print("robot_info", self.robot.num_dof)
         print("robot_dof_names", len(self.robot.dof_names), self.robot.dof_names)
