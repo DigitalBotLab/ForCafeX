@@ -219,8 +219,16 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # print("stage unit", unit)
         if self.controller: 
             from .denso.action_config import action_config
+            # self.controller.apply_high_level_action(action_config["low_level_test"])
+            
             self.controller.apply_high_level_action(action_config["pick_up_cup"])
-            self.controller.apply_high_level_action(action_config["go_to_coffee_point"])
+            self.controller.apply_high_level_action(action_config["go_home_reverse"])
+            self.controller.apply_high_level_action(action_config["place_cup_to_coffee_point"])
+            self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
+            
+            self.controller.apply_high_level_action(action_config["go_home_reverse"])
+            self.controller.apply_high_level_action(action_config["place_cup_to_milk_point"])
+            # self.controller.apply_high_level_action(action_config["go_home"])
             
 
     def on_shutdown(self):

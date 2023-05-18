@@ -61,7 +61,14 @@ class MyController(BaseController):
         """
         Update Joint Target positions
         """
-        self.joint_target = joint_positions
+        self.joint_start = self.robot.get_joint_positions()[:6]
+        self.joint_target = np.array(joint_positions)
+
+    def get_joint_target(self, alpha):
+        """
+        Get Joint Target positions
+        """
+        return alpha * self.joint_target + (1 - alpha) * self.joint_start
 
 
     def update_event(self, event: str):
@@ -162,7 +169,7 @@ class MyController(BaseController):
                 elif self.event == "open":
                     self.gripper.set_close_ratio(1.0)
                 elif self.event == "low_level":
-                    self.update_joint_target(ee_pos)
+                    self.update_joint_target(ee_pos) # here ee_pos is joint positions
 
                 if self.connect_server:
                     self.synchronize_robot()
@@ -188,12 +195,14 @@ class MyController(BaseController):
         # FIXME: fix low-level action
         elif self.event == "low_level":
             joint_positions = self.robot.get_joint_positions()
-            a = self.event_elapsed / 200
+            a = 1 - self.event_elapsed / 200
             # print("joint_positions", len(joint_positions), "joint_target", len(self.joint_target))
-            joint_positions[:6] =  self.joint_target
+            joint_positions[:6] =  self.get_joint_target(a)
             # self.robot._articulation_view._physics_view.set_dof_position_targets(joint_positions, np.arange(6))
+            self.robot.set_joint_positions(joint_positions, np.arange(len(joint_positions)))
+            # actions = ArticulationAction(joint_positions = joint_positions) 
             # set_joint_positions(joint_positions)
-            # return
+            return
             # actions = self.cs_controller.forward()
 
         self.robot.apply_action(actions)
