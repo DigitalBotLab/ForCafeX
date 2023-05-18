@@ -16,9 +16,9 @@ rmp_params:
         position_gain: 100.
         damping_gain: 50.
         robust_position_term_thresh: .5
-        inertia: 1.
+        inertia: 1.0
     cspace_trajectory_rmp:
-        p_gain: 80.
+        p_gain: 8e-4
         d_gain: 10.
         ff_gain: .25
         weight: 50.

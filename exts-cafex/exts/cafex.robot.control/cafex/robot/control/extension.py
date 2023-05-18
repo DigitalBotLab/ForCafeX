@@ -30,7 +30,8 @@ class CafexRobotControlExtension(omni.ext.IExt):
         with self._window.frame:
             with ui.VStack():
                 ui.Button("Debug", height = 20, clicked_fn=self.debug)
-                ui.Line(height = 2)
+                ui.Line(height = 6)
+                ui.Button("Add Fluid", height = 20, clicked_fn=self.fluid_test)
                 ui.Button("Register Physics Event", height = 50, clicked_fn=self.register_physics_event)
                 with ui.HStack(height = 20): 
                     ui.Label("Robot Prim Path:", width = 200)
@@ -211,6 +212,20 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # rot_euler = quat_to_euler_angles(rot_quat, degrees=True)
         # print("rot_euler:", rot_euler)
         # self.ee_ori_euler_read_widget.update(rot_euler[0])
+
+    ################################ fluid #########################################################
+    def fluid_test(self):
+        print(f"[dbl.for.blendid] debug")
+         #"/World/Xform"
+        from .fluid.faucet import Faucet
+        # faucet = Faucet(inflow_path = inflow_path)
+        # faucet.set_up_fluid_particle_system()
+        # faucet.set_up_cylinder_particles(cylinder_height=1.5, cylinder_radius=0.02)
+
+        faucet = Faucet(material_name = "OmniSurface_Foam", 
+                        inflow_path = "/World/WorkingArea/MainBoard/CoffeePoint")
+        faucet.set_up_fluid_particle_system(instance_index=1)
+        faucet.set_up_cylinder_particles(cylinder_height=0.4, cylinder_radius=0.04)
 
     ####################### debug ############################################################
     def debug(self):

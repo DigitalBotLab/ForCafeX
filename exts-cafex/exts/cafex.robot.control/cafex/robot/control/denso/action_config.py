@@ -47,7 +47,7 @@ action_config = {
             {
                 'action_type': 'move',
                 'duration': 50,
-                'position': [-0.2, 0, 0.1],
+                'position': [-0.2, 0, 0.08],
                 'orientation': [0, 0.7071, 0.0, 0.7071], # wxyz
             },
             # {
@@ -83,7 +83,7 @@ action_config = {
             {
                 'action_type': 'move',
                 'duration': 50,
-                'position': [-0.4, 0, 0.1],
+                'position': [-0.2, 0, 0.12],
                 'orientation': [0, 0.7071, 0.0, 0.7071], # wxyz
             },
             {
@@ -106,7 +106,7 @@ action_config = {
             {
                 'action_type': 'move',
                 'duration': 150,
-                'position': [-0.2, 0, 0.1],
+                'position': [-0.2, 0, 0.06],
                 'orientation': [0, 0.7071, 0.0, 0.7071], # wxyz
             },
             # {
@@ -152,7 +152,7 @@ action_config = {
             {
                 'action_type': 'move',
                 'duration': 50,
-                'position': [-0.2, 0, 0.05],
+                'position': [-0.2, 0, 0.07],
                 'orientation': [0, 0.7071, 0.0, 0.7071], # wxyz
             },
             {
