@@ -219,7 +219,9 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # print("stage unit", unit)
         if self.controller: 
             from .denso.action_config import action_config
+            self.controller.apply_high_level_action(action_config["pick_up_cup"])
             self.controller.apply_high_level_action(action_config["go_to_coffee_point"])
+            
 
     def on_shutdown(self):
         print("[cafex.robot.control] cafex robot control shutdown")
