@@ -8,7 +8,6 @@ from .schemaHelpers import PhysxParticleInstancePrototype, \
      addPhysxParticleSystem, addPhysxParticlesSimple
 import omni.timeline
 
-from typing import List
 import math
 
 from .utils import generate_cylinder_y, point_sphere
@@ -27,9 +26,10 @@ def setGridFilteringPass(gridFilteringFlags: int, passIndex: int, operation: int
 
 class Faucet():
     def __init__(self,
-        material_name = "OmniSurface_ClearWater", inflow_path:str = "/World/faucet/inflow", 
-        link_paths:List[str] = ["/World/faucet/link_0"]
-         ):
+        material_name = "OmniSurface_ClearWater", 
+        inflow_path:str = "/World/faucet/inflow", 
+        material_path = None,
+        ):
         """! Faucet class
          @param particle_params : parameters for particles
          @param iso_surface_params: parameters for iso_surface
@@ -40,6 +40,7 @@ class Faucet():
          @return an instance of Faucet class
         """
         self.material_name = material_name
+        self.material_path = material_path
 
         # inflow position
         self.stage = omni.usd.get_context().get_stage()
@@ -67,7 +68,7 @@ class Faucet():
         points = [Gf.Vec3f(x, y, z) for (x, y, z) in zip(x, y, z)]
         return points
     
-    def set_up_cylinder_particles(self, cylinder_height, cylinder_radius):
+    def set_up_cylinder_particles(self, cylinder_height, cylinder_radius, z_offset = 0.0):
         """
         Set up particle system
         ::param cylinder_height: the height of the cylinder
@@ -90,7 +91,7 @@ class Faucet():
         protoIndices_list = []
 
         # lowerCenter =  Gf.Vec3f(0, 0, 0) # self.inflow_position
-        lowerCenter = self.inflow_position
+        lowerCenter = self.inflow_position + Gf.Vec3f(0, 0, z_offset)
 
         particle_rest_offset = self._particleSystemSchemaParameters["fluid_rest_offset"]
     
@@ -208,14 +209,18 @@ class Faucet():
         particleSystem = self.stage.GetPrimAtPath(self.particleSystemPath)
 
         # Render material
-        mtl_created = []
-        omni.kit.commands.execute(
-            "CreateAndBindMdlMaterialFromLibrary",
-            mdl_name="OmniSurfacePresets.mdl",
-            mtl_name=self.material_name,
-            mtl_created_list=mtl_created,
-        )
-        mtl_path = mtl_created[0]
+        if self.material_path is None:
+            mtl_created = []
+            omni.kit.commands.execute(
+                "CreateAndBindMdlMaterialFromLibrary",
+                mdl_name="OmniSurfacePresets.mdl",
+                mtl_name=self.material_name,
+                mtl_created_list=mtl_created,
+            )
+            mtl_path = mtl_created[0]
+        else:
+            mtl_path = self.material_path
+        print("mtl_path", mtl_path)
         omni.kit.commands.execute("BindMaterial", prim_path=self.particleSystemPath, material_path=mtl_path)
 
         # Create a pbd particle material and set it on the particle system

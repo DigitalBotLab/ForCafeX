@@ -222,10 +222,11 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # faucet.set_up_fluid_particle_system()
         # faucet.set_up_cylinder_particles(cylinder_height=1.5, cylinder_radius=0.02)
 
-        faucet = Faucet(material_name = "OmniSurface_Foam", 
-                        inflow_path = "/World/WorkingArea/MainBoard/CoffeePoint")
+        faucet = Faucet(material_name = "OmniSurface_ClearWater", 
+                        inflow_path = "/World/WorkingArea/MainBoard/CoffeePoint",
+                        material_path="/World/Looks/OmniSurface_Coffee") # "/World/Looks/OmniSurface_OrangeJuice" # "/World/Looks/OmniSurface_Coffee"
         faucet.set_up_fluid_particle_system(instance_index=1)
-        faucet.set_up_cylinder_particles(cylinder_height=0.4, cylinder_radius=0.04)
+        faucet.set_up_cylinder_particles(cylinder_height=5.0, cylinder_radius=0.02, z_offset=0.2)
 
     ####################### debug ############################################################
     def debug(self):
