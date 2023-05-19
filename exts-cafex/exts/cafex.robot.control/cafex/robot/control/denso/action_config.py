@@ -29,7 +29,7 @@ action_config = {
             {
                 'action_type': 'move',
                 'duration': 100,
-                'position': [0.3, 0, 0.3],
+                'position': [0.2, 0, 0.4],
                 'orientation': [0, 0.7071, 0.0, 0.7071], # wxyz
             },
 
