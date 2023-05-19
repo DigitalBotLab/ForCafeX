@@ -226,7 +226,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
                         inflow_path = "/World/WorkingArea/MainBoard/CoffeePoint",
                         material_path="/World/Looks/OmniSurface_Coffee") # "/World/Looks/OmniSurface_OrangeJuice" # "/World/Looks/OmniSurface_Coffee"
         faucet.set_up_fluid_particle_system(instance_index=1)
-        faucet.set_up_cylinder_particles(cylinder_height=5.0, cylinder_radius=0.02, z_offset=0.2)
+        faucet.set_up_cylinder_particles(cylinder_height=6.0, cylinder_radius=0.015, z_offset=0.2)
 
     ####################### debug ############################################################
     def debug(self):
@@ -235,16 +235,19 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # print("stage unit", unit)
         if self.controller: 
             from .denso.action_config import action_config
+            ## Test 0
             # self.controller.apply_high_level_action(action_config["low_level_test"])
             
+            # Test 1
             self.controller.apply_high_level_action(action_config["pick_up_cup"])
             self.controller.apply_high_level_action(action_config["go_home_reverse"])
-            self.controller.apply_high_level_action(action_config["place_cup_to_coffee_point"])
-            self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
-            
-            self.controller.apply_high_level_action(action_config["go_home_reverse"])
-            self.controller.apply_high_level_action(action_config["place_cup_to_milk_point"])
-            # self.controller.apply_high_level_action(action_config["go_home"])
+            # self.controller.apply_high_level_action(action_config["place_cup_to_coffee_point"])
+            # self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
+            # self.controller.apply_high_level_action(action_config["go_home_reverse"])
+            # self.controller.apply_high_level_action(action_config["place_cup_to_milk_point"])
+
+            ## Test 2
+            # self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
             
 
     def on_shutdown(self):
