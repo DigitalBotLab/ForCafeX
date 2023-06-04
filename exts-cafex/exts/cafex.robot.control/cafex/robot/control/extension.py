@@ -29,7 +29,9 @@ class CafexRobotControlExtension(omni.ext.IExt):
         self._window = ui.Window("For CafeX", width=300, height=300)
         with self._window.frame:
             with ui.VStack():
-                ui.Button("Debug", height = 20, clicked_fn=self.debug)
+                ui.Button("Demo 1", height = 20, clicked_fn=self.demo1)
+                ui.Button("Demo 2", height = 20, clicked_fn=self.demo2)
+                
                 ui.Line(height = 6)
                 ui.Button("Add Fluid", height = 20, clicked_fn=self.fluid_test)
                 ui.Button("Register Physics Event", height = 50, clicked_fn=self.register_physics_event)
@@ -229,7 +231,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
         faucet.set_up_cylinder_particles(cylinder_height=6.0, cylinder_radius=0.015, z_offset=0.2)
 
     ####################### debug ############################################################
-    def debug(self):
+    def demo1(self):
         # from pxr import UsdGeom
         # unit = UsdGeom.GetStageMetersPerUnit(omni.usd.get_context().get_stage())
         # print("stage unit", unit)
@@ -248,6 +250,19 @@ class CafexRobotControlExtension(omni.ext.IExt):
 
             ## Test 2
             self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
+
+    def demo2(self):
+        # from pxr import UsdGeom
+        # unit = UsdGeom.GetStageMetersPerUnit(omni.usd.get_context().get_stage())
+        # print("stage unit", unit)
+        if self.controller: 
+            from .denso.action_config import action_config
+            ## Test 0
+            # self.controller.apply_high_level_action(action_config["low_level_test"])
+            
+            # Test 1
+            self.controller.apply_high_level_action(action_config["pick_up_cup"])
+            self.controller.apply_high_level_action(action_config["go_home_reverse"])
             
 
     def on_shutdown(self):
