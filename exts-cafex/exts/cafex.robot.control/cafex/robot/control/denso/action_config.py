@@ -80,16 +80,22 @@ action_config = {
         'base_prim': '/World/WorkingArea/MainBoard/CoffeePoint',
         'steps':[
             ## no need to move back
+
             {
                 'action_type': 'move',
-                'duration': 50,
-                'position': [-0.2, 0, 0.12],
+                'duration': 150,
+                'position': [-0.4, 0, 0.2],
                 'orientation': [0, 0.7071, 0.0, 0.7071], # wxyz
             },
             {
+                'action_type': 'open',
+                'duration': 60,
+                'ratio': None,
+            },
+            {
                 'action_type': 'move',
-                'duration': 50,
-                'position': [-0.4, 0, 0.2],
+                'duration': 150,
+                'position': [-0.22, 0, 0.05],
                 'orientation': [0, 0.7071, 0.0, 0.7071], # wxyz
             },
         ]

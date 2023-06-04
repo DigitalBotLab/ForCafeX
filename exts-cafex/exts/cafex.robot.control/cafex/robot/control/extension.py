@@ -238,16 +238,16 @@ class CafexRobotControlExtension(omni.ext.IExt):
             ## Test 0
             # self.controller.apply_high_level_action(action_config["low_level_test"])
             
-            # Test 1
-            self.controller.apply_high_level_action(action_config["pick_up_cup"])
-            self.controller.apply_high_level_action(action_config["go_home_reverse"])
+            # # Test 1
+            # self.controller.apply_high_level_action(action_config["pick_up_cup"])
+            # self.controller.apply_high_level_action(action_config["go_home_reverse"])
             # self.controller.apply_high_level_action(action_config["place_cup_to_coffee_point"])
             # self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
             # self.controller.apply_high_level_action(action_config["go_home_reverse"])
             # self.controller.apply_high_level_action(action_config["place_cup_to_milk_point"])
 
             ## Test 2
-            # self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
+            self.controller.apply_high_level_action(action_config["move_cup_out_coffee_point"])
             
 
     def on_shutdown(self):
