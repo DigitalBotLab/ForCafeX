@@ -28,13 +28,16 @@ class CafexRobotControlExtension(omni.ext.IExt):
     
         self._window = ui.Window("For CafeX", width=300, height=300)
         with self._window.frame:
-            with ui.VStack():
-                ui.Button("Demo 1", height = 20, clicked_fn=self.demo1)
-                ui.Button("Demo 2", height = 20, clicked_fn=self.demo2)
+            with ui.VStack(width = 300):
+                ui.Button("Start", height = 50, clicked_fn=self.register_physics_event, 
+                          style={"font_size": 40.0},
+                        )
+                ui.Button("Demo 1", height = 20, clicked_fn=self.demo1, style={"font_size": 30.0},)
+                ui.Button("Demo 2", height = 20, clicked_fn=self.demo2, style={"font_size": 30.0},)
                 
                 ui.Line(height = 6)
-                ui.Button("Add Fluid", height = 20, clicked_fn=self.fluid_test)
-                ui.Button("Register Physics Event", height = 50, clicked_fn=self.register_physics_event)
+                ui.Button("Add Fluid", height = 20, clicked_fn=self.fluid_test, visible = False)
+                
                 with ui.HStack(height = 20): 
                     ui.Label("Robot Prim Path:", width = 200)
                     self.robot_path_widget = ui.StringField(width = 300)
@@ -45,7 +48,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
                 with ui.HStack(height = 20):
                     self.ee_pos_widget = CustomMultifieldWidget(
                         label="Transform",
-                        default_vals=[0.4, 0.2, 0.3],
+                        default_vals=[0.4, 0, 0.3],
                         height = 20,
                     )
                 ui.Spacer(height = 9)
@@ -104,6 +107,10 @@ class CafexRobotControlExtension(omni.ext.IExt):
         # timeline
         stream = omni.timeline.get_timeline_interface().get_timeline_event_stream()
         self._timeline_sub = stream.create_subscription_to_pop(self._on_timeline_event)
+
+        # play
+        self.timeline = omni.timeline.get_timeline_interface()
+        self.timeline.play()
 
     def _on_timeline_event(self, event):
         if event.type == int(omni.timeline.TimelineEventType.PLAY):
