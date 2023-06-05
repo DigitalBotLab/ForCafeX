@@ -35,6 +35,8 @@ class CafexRobotControlExtension(omni.ext.IExt):
                 ui.Button("Go Home", height = 20, clicked_fn=self.go_home, style={"font_size": 30.0},)
                 ui.Button("Demo 1", height = 20, clicked_fn=self.demo1, style={"font_size": 30.0},)
                 ui.Button("Demo 2", height = 20, clicked_fn=self.demo2, style={"font_size": 30.0},)
+                ui.Button("Stop", height = 20, clicked_fn=self.stop, style={"font_size": 30.0},)
+                
                 
                 ui.Line(height = 6)
                 ui.Button("Add Fluid", height = 20, clicked_fn=self.fluid_test, visible = False)
@@ -276,7 +278,10 @@ class CafexRobotControlExtension(omni.ext.IExt):
             # Test 1
             self.controller.apply_high_level_action(action_config["pick_up_cup"])
             self.controller.apply_high_level_action(action_config["go_home_reverse"])
-            
+
+    def stop(self):
+        if self.timeline:
+            self.timeline.stop()        
 
     def on_shutdown(self):
         print("[cafex.robot.control] cafex robot control shutdown")
