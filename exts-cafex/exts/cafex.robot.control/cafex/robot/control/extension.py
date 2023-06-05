@@ -32,6 +32,7 @@ class CafexRobotControlExtension(omni.ext.IExt):
                 ui.Button("Start", height = 50, clicked_fn=self.register_physics_event, 
                           style={"font_size": 40.0},
                         )
+                ui.Button("Go Home", height = 20, clicked_fn=self.go_home, style={"font_size": 30.0},)
                 ui.Button("Demo 1", height = 20, clicked_fn=self.demo1, style={"font_size": 30.0},)
                 ui.Button("Demo 2", height = 20, clicked_fn=self.demo2, style={"font_size": 30.0},)
                 
@@ -238,6 +239,11 @@ class CafexRobotControlExtension(omni.ext.IExt):
         faucet.set_up_cylinder_particles(cylinder_height=6.0, cylinder_radius=0.015, z_offset=0.2)
 
     ####################### debug ############################################################
+    def go_home(self):
+        if self.controller: 
+            from .denso.action_config import action_config
+            self.controller.apply_high_level_action(action_config["go_home"])
+
     def demo1(self):
         # from pxr import UsdGeom
         # unit = UsdGeom.GetStageMetersPerUnit(omni.usd.get_context().get_stage())

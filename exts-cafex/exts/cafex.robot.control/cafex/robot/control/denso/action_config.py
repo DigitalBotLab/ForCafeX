@@ -16,7 +16,7 @@ action_config = {
         'steps':[
             {
                 'action_type': 'move',
-                'duration': 200,
+                'duration': 100,
                 'position': [0.3, 0, 0.3],
                 'orientation': [0.7071, 0.0, 0.7071, 0], # wxyz
             },
